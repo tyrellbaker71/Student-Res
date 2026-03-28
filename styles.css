@@ -63,7 +63,7 @@ ul { list-style: none; }
 
 .section {
   padding: clamp(64px, 8vw, 120px) 0;
-}
+} 
 
 .section-label {
   font-family: var(--font-body);
@@ -242,9 +242,6 @@ ul { list-style: none; }
   transition: var(--transition);
 }
 
-/* =========================================
-   HERO
-   ========================================= */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -373,9 +370,6 @@ ul { list-style: none; }
   50% { opacity: 0.9; }
 }
 
-/* =========================================
-   STATS BAR
-   ========================================= */
 .stats-bar {
   background: var(--navy);
   border-top: 1px solid rgba(255,255,255,0.06);
@@ -421,9 +415,6 @@ ul { list-style: none; }
   background: rgba(255,255,255,0.1);
 }
 
-/* =========================================
-   ABOUT
-   ========================================= */
 .about {
   background: var(--cream);
 }
@@ -486,9 +477,6 @@ ul { list-style: none; }
   line-height: 1.7;
 }
 
-/* =========================================
-   GALLERY
-   ========================================= */
 .gallery {
   background: var(--white);
 }
@@ -508,7 +496,6 @@ ul { list-style: none; }
   aspect-ratio: 1 / 1;
 }
 
-/* Placeholder gradient for missing images */
 .gallery-item img {
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   background: linear-gradient(135deg, #e8edf5, #d0d9ee);
@@ -534,9 +521,6 @@ ul { list-style: none; }
 .gallery-item:hover .gallery-overlay { opacity: 1; }
 .gallery-item:hover img { transform: scale(1.06); }
 
-/* =========================================
-   CONTACT
-   ========================================= */
 .contact {
   background: var(--cream);
 }
@@ -624,9 +608,6 @@ ul { list-style: none; }
 }
 .map-container iframe { width: 100%; height: 100%; }
 
-/* =========================================
-   FOOTER
-   ========================================= */
 .footer {
   background: var(--navy);
   padding: 56px 0 36px;
@@ -677,9 +658,6 @@ ul { list-style: none; }
   line-height: 1.7;
 }
 
-/* =========================================
-   FLOATING WHATSAPP BUTTON
-   ========================================= */
 .fab-whatsapp {
   position: fixed;
   bottom: 32px;
@@ -728,9 +706,6 @@ ul { list-style: none; }
   border-left-color: var(--text-dark);
 }
 
-/* =========================================
-   RESPONSIVE
-   ========================================= */
 @media (max-width: 1024px) {
   .gallery-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -780,9 +755,6 @@ ul { list-style: none; }
   .fab-whatsapp { bottom: 20px; right: 20px; width: 52px; height: 52px; }
 }
 
-/* =========================================
-   SCROLL ANIMATIONS
-   ========================================= */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
