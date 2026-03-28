@@ -8,8 +8,8 @@
   --navy:        #0f1f3d;
   --navy-mid:    #1a3260;
   --navy-light:  #243d72;
-  --gold:        #c9a84c;
-  --gold-light:  #e2c47a;
+  --gold:        #fd0303;
+  --gold-light:  #ef1010;
   --gold-pale:   #f5edd8;
   --cream:       #faf8f4;
   --white:       #ffffff;
@@ -20,7 +20,7 @@
   --wa-green:    #25d366;
   --wa-dark:     #128c7e;
 
-  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-display: 'Cormorant Garamond', , serif;
   --font-body:    'DM Sans', sans-serif;
 
   --radius-sm:   8px;
