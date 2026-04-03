@@ -1,8 +1,3 @@
-/* =========================================
-   GERMISTON HOUSE — script.js
-   ========================================= */
-
-// ---- NAVBAR: Scroll behaviour ----
 const navbar = document.getElementById('navbar');
 
 window.addEventListener('scroll', () => {
@@ -13,14 +8,11 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
-
-// ---- MOBILE NAV TOGGLE ----
 const navToggle = document.getElementById('navToggle');
 const navLinks  = document.getElementById('navLinks');
 
 navToggle.addEventListener('click', () => {
   navLinks.classList.toggle('open');
-  // Animate hamburger → X
   const spans = navToggle.querySelectorAll('span');
   const isOpen = navLinks.classList.contains('open');
   if (isOpen) {
@@ -34,7 +26,6 @@ navToggle.addEventListener('click', () => {
   }
 });
 
-// Close menu when a link is clicked
 navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
     navLinks.classList.remove('open');
@@ -45,16 +36,12 @@ navLinks.querySelectorAll('a').forEach(link => {
   });
 });
 
-
-// ---- SCROLL REVEAL ----
 const revealElements = document.querySelectorAll(
   '.about-feature, .contact-card, .gallery-item, .section-label, .section-title, .section-sub'
 );
 
-// Add reveal class
 revealElements.forEach((el, index) => {
   el.classList.add('reveal');
-  // Stagger children within grids
   const parent = el.parentElement;
   if (parent && (parent.classList.contains('about-grid') ||
                  parent.classList.contains('gallery-grid') ||
@@ -78,11 +65,8 @@ const observer = new IntersectionObserver((entries) => {
 
 revealElements.forEach(el => observer.observe(el));
 
-
-// ---- GALLERY: Broken image fallback ----
 document.querySelectorAll('.gallery-item img').forEach((img, index) => {
   img.addEventListener('error', () => {
-    // Replace broken image with a styled placeholder
     const num = index + 1;
     img.style.display = 'none';
     const placeholder = document.createElement('div');
