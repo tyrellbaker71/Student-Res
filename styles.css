@@ -1,15 +1,9 @@
-/* =========================================
-   GERMISTON HOUSE — styles.css
-   Deep Navy + Warm Gold — Premium & Trustworthy
-   ========================================= */
-
-/* ---- CSS VARIABLES ---- */
 :root {
   --navy:        #0f1f3d;
   --navy-mid:    #1a3260;
   --navy-light:  #243d72;
-  --gold:        #fd0303;
-  --gold-light:  #e01818;
+  --gold:        #ffffff;
+  --gold-light:  #074ba4;
   --gold-pale:   #f5edd8;
   --cream:       #faf8f4;
   --white:       #ffffff;
@@ -36,8 +30,6 @@
   --transition:  0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --max-width:   1200px;
 }
-
-/* ---- RESET & BASE ---- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -54,7 +46,6 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 
-/* ---- UTILITIES ---- */
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
@@ -63,7 +54,7 @@ ul { list-style: none; }
 
 .section {
   padding: clamp(64px, 8vw, 120px) 0;
-} 
+}
 
 .section-label {
   font-family: var(--font-body);
@@ -92,7 +83,6 @@ ul { list-style: none; }
   margin-bottom: 52px;
 }
 
-/* ---- BUTTONS ---- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -131,9 +121,6 @@ ul { list-style: none; }
   transform: translateY(-2px);
 }
 
-/* =========================================
-   NAVBAR
-   ========================================= */
 .navbar {
   position: fixed;
   top: 0; left: 0; right: 0;
