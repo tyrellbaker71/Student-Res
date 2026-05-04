@@ -8,6 +8,88 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Hero Slider ── */
+    .hero { position: relative; overflow: hidden; }
+
+    .hero-slider {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .hero-slide.active { opacity: 1; }
+
+    /* Remove old static bg image rule if present */
+    .hero-bg-img { display: none; }
+
+    /* Slider navigation buttons */
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: #fff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      transition: background 0.25s, transform 0.25s;
+    }
+
+    .slider-btn:hover {
+      background: rgba(255,255,255,0.28);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .slider-btn--prev { left: 1.5rem; }
+    .slider-btn--next { right: 1.5rem; }
+
+    /* Dots */
+    .slider-dots {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .slider-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.45);
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      padding: 0;
+    }
+
+    .slider-dot.active {
+      background: #fff;
+      transform: scale(1.35);
+    }
+
+    /* Override hero-title to remove italic style from old markup */
+    .hero-title em { font-style: normal; }
+  </style>
 </head>
 <body>
 
@@ -29,14 +111,36 @@
   </nav>
   
   <section class="hero" id="home">
-    <img src="images/img1.JPG" alt="Germiston House" class="hero-bg-img" />
+    <!-- Image Slider -->
+    <div class="hero-slider">
+      <div class="hero-slide active" style="background-image: url('images/img1.JPG')"></div>
+      <div class="hero-slide" style="background-image: url('images/img2.JPG')"></div>
+      <div class="hero-slide" style="background-image: url('images/img3.JPG')"></div>
+      <div class="hero-slide" style="background-image: url('images/img4.JPG')"></div>
+      <div class="hero-slide" style="background-image: url('images/img5.JPG')"></div>
+    </div>
     <div class="hero-overlay"></div>
+
+    <!-- Slider Controls -->
+    <button class="slider-btn slider-btn--prev" id="sliderPrev" aria-label="Previous slide">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="slider-btn slider-btn--next" id="sliderNext" aria-label="Next slide">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <!-- Slider Dots -->
+    <div class="slider-dots" id="sliderDots">
+      <button class="slider-dot active" data-index="0" aria-label="Slide 1"></button>
+      <button class="slider-dot" data-index="1" aria-label="Slide 2"></button>
+      <button class="slider-dot" data-index="2" aria-label="Slide 3"></button>
+      <button class="slider-dot" data-index="3" aria-label="Slide 4"></button>
+      <button class="slider-dot" data-index="4" aria-label="Slide 5"></button>
+    </div>
+
     <div class="hero-content">
       <div class="hero-badge">NSFAS Accredited Residence</div>
-      <h1 class="hero-title">
-        Your Home<br/>
-        <em>Away From Home</em>
-      </h1>
+      <h1 class="hero-title">Germiston House</h1>
       <p class="hero-tagline">Safe, comfortable, and affordable student accommodation<br/>in the heart of Germiston.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">Get In Touch</a>
@@ -316,5 +420,46 @@
   </a>
 
   <script src="script.js"></script>
+  <script>
+    // ── Hero Image Slider ──
+    (function () {
+      const slides = document.querySelectorAll('.hero-slide');
+      const dots   = document.querySelectorAll('.slider-dot');
+      let current  = 0;
+      let timer;
+
+      function goTo(index) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      function next() { goTo(current + 1); }
+      function prev() { goTo(current - 1); }
+
+      function startAuto() {
+        timer = setInterval(next, 5000);
+      }
+
+      function resetAuto() {
+        clearInterval(timer);
+        startAuto();
+      }
+
+      document.getElementById('sliderNext').addEventListener('click', () => { next(); resetAuto(); });
+      document.getElementById('sliderPrev').addEventListener('click', () => { prev(); resetAuto(); });
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          goTo(parseInt(dot.dataset.index));
+          resetAuto();
+        });
+      });
+
+      startAuto();
+    })();
+  </script>
 </body>
 </html>
